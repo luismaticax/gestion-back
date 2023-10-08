@@ -1,13 +1,14 @@
-var express = require('express')
-var pkg = require('../package.json')
+const express = require('express')
+const pkg = require('../package.json')
 
-var router = express.Router()
+const router = express.Router()
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   res.send({
     name: pkg.name,
     version: pkg.version,
+    /* eslint-disable-next-line no-undef */
     enviroment: process.env.ENV,
   })
 })
