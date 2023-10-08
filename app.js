@@ -2,8 +2,8 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
-const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users')
+const statusRouter = require('./routes/status')
+const userRouter = require('./routes/user')
 
 const app = express()
 
@@ -12,7 +12,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use('/', indexRouter)
-app.use('/users', usersRouter)
+// This is to aviod error
+app.get('/favicon.ico', (req, res) => res.status(204))
+
+app.use('/', statusRouter)
+app.use('/users', userRouter)
 
 module.exports = app
