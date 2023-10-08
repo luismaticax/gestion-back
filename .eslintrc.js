@@ -10,6 +10,6 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
-    "no-var":2
+    'no-var': 2,
   },
 }
