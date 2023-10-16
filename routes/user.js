@@ -2,22 +2,32 @@ const express = require('express')
 const User = require('../schemas/user')
 const router = express.Router()
 
-router.get('/', function (req, res) {
-  res.send('respond with a resource')
-})
+router.get('/', getAllUsers)
+router.get('/:id', getUserById)
 
-router.get('/:id', async function (req, res) {
-  const users = await User.find(req.params)
-  if (!users || users.length == 0) {
-    res.status(404).send('User not found')
-  } else {
+async function getAllUsers(req, res, next) {
+  try {
+    const users = await User.find({})
     res.send(users)
+  } catch (err) {
+    next(err)
   }
-})
+}
 
-router.get('/all', async function (req, res) {
-  const users = await User.find({})
-  res.send(users)
-})
+async function getUserById(req, res, next) {
+  if (!req.params.id) {
+    res.status(404).send('Id not found')
+  }
+  try {
+    const user = await User.findById(req.params.id)
+    if (!user || user.length == 0) {
+      res.status(404).send('User not found')
+    } else {
+      res.send(user)
+    }
+  } catch (err) {
+    next(err)
+  }
+}
 
 module.exports = router
