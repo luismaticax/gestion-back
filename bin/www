@@ -9,6 +9,9 @@ const figlet = require('figlet')
 const mongoose = require('mongoose');
 const pkg = require('../package.json')
 
+const env_path = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env'
+require('dotenv').config({ path: env_path })
+
 // Get port from environment and store in Express.
 const port = process.env.PORT || 3000;
 app.set('port', port);
@@ -16,14 +19,16 @@ app.set('port', port);
 // Create HTTP server.
 const server = http.createServer(app);
 
+const db_url = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/'
+const db_name = process.env.MONGO_DB || 'test'
+
 // MongoDB database initialization
 initDatabase()
   .then(() => console.log('Database connection established successfully!'))
   .catch(err => console.log(err));
 
 async function initDatabase() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/test4');
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+  await mongoose.connect(db_url + db_name);
 }
 
 // Listen on provided port, on all network interfaces.
