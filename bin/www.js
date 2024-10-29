@@ -1,16 +1,16 @@
-#!/usr/bin/env node
 /* eslint-disable no-undef */
+import app from '../app.js'
+import debug from 'debug'
+import http from 'http'
+import figlet from 'figlet'
+import mongoose from 'mongoose'
+import pkg from '../package.json' with { type: 'json' }
+import dotenv from 'dotenv'
 
-// Module dependencies.
-const app = require('../app')
-const debug = require('debug')('base-api-express-generator:server')
-const http = require('http')
-const figlet = require('figlet')
-const mongoose = require('mongoose')
-const pkg = require('../package.json')
+debug('base-api-express-generator:server')
 
 const env_path = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env'
-require('dotenv').config({ path: env_path })
+dotenv.config({ path: env_path })
 
 // Get port from environment and store in Express.
 const port = process.env.PORT || 3000
@@ -74,6 +74,7 @@ function printTitle() {
   process.stdout.write(
     `Version: ${pkg.version}, Environment: ${process.env.NODE_ENV || 'default'}\n`,
   )
+  // process.stdout.write(`Version: ${version}, Environment: ${process.env.NODE_ENV || 'default'}\n`)
   if (process.env !== 'production') {
     process.stdout.write(`Listening on port ${port}\n`)
   }

@@ -1,8 +1,8 @@
-const express = require('express')
-const bcrypt = require('bcrypt')
+import express from 'express'
+import bcrypt from 'bcrypt'
 
-const User = require('../schemas/user')
-const Role = require('../schemas/role')
+import User from '../schemas/user.js'
+import Role from '../schemas/role.js'
 
 const router = express.Router()
 
@@ -165,4 +165,4 @@ async function deleteUser(req, res, next) {
   }
 }
 
-module.exports = router
+export default router

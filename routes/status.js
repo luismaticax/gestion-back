@@ -1,5 +1,5 @@
-const express = require('express')
-const pkg = require('../package.json')
+import express from 'express'
+import pkg from '../package.json' with { type: 'json' }
 
 const router = express.Router()
 
@@ -12,4 +12,4 @@ router.get('/', function (req, res) {
   })
 })
 
-module.exports = router
+export default router

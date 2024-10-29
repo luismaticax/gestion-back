@@ -1,9 +1,8 @@
-const jwt = require('jsonwebtoken')
-const createError = require('http-errors')
-// const fs = require('fs')
-// const path = require('path')
+import jwt from 'jsonwebtoken'
+import createError from 'http-errors'
+// import fs from 'fs'
+// import path from 'path'
 
-/* eslint-disable-next-line no-undef */
 // const publicKey = fs.readFileSync(path.join(__dirname, `../keys/base-api-express-generator.pub`))
 
 function getToken(req, next) {
@@ -59,4 +58,4 @@ function authentication(req, res, next) {
   }
 }
 
-module.exports = authentication
+export default authentication

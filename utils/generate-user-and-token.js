@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken')
-// const fs = require('fs')
-// const path = require('path')
+import jwt from 'jsonwebtoken'
+// import fs from 'fs'
+// import path from 'path'
 
-const Role = require('../schemas/role')
+import Role from '../schemas/role.js'
 
 async function generateUserToken(req, user) {
   const role = await Role.findById(user.role).exec()
@@ -20,7 +20,6 @@ async function generateUserToken(req, user) {
     lastName: user.lastName,
   }
 
-  /* eslint-disable-next-line no-undef */
   // const privateKey = fs.readFileSync(path.join(__dirname, `../keys/base-api-express-generator.pem`))
 
   // Unsecure alternative
@@ -38,4 +37,4 @@ async function generateUserToken(req, user) {
   return { token, user: userResponse }
 }
 
-module.exports = generateUserToken
+export default generateUserToken

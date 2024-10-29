@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
-const validate = require('mongoose-validator')
-const bcrypt = require('bcrypt')
+import mongoose from 'mongoose'
+import validate from 'mongoose-validator'
+import bcrypt from 'bcrypt'
 
 const Schema = mongoose.Schema
 const { ObjectId } = Schema.Types
@@ -44,4 +44,4 @@ userSchema.method('checkPassword', async function checkPassword(potentialPasswor
 
 const User = mongoose.model('User', userSchema)
 
-module.exports = User
+export default User

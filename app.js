@@ -1,13 +1,13 @@
-const express = require('express')
-const cookieParser = require('cookie-parser')
-const logger = require('morgan')
-const cors = require('cors')
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import logger from 'morgan'
+import cors from 'cors'
 
-const statusRouter = require('./routes/status')
-const authRouter = require('./routes/auth')
-const userRouter = require('./routes/user')
-const authentication = require('./middlewares/authentication')
-const authorization = require('./middlewares/authorization')
+import statusRouter from './routes/status.js'
+import authRouter from './routes/auth.js'
+import userRouter from './routes/user.js'
+import authentication from './middlewares/authentication.js'
+import authorization from './middlewares/authorization.js'
 
 const app = express()
 
@@ -25,4 +25,4 @@ app.use('/', statusRouter)
 app.use('/auth', authRouter)
 app.use('/users', authentication, userRouter)
 
-module.exports = app
+export default app

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const mongodb = require('mongodb')
+import mongodb from 'mongodb'
 
 const { ObjectId } = mongodb
 
@@ -54,16 +54,14 @@ const initialUsers = [
   },
 ]
 
-module.exports = {
-  async up(db, client) {
-    await db.collection('users').insertMany(initialUsers)
-  },
+export const up = async (db, client) => {
+  await db.collection('users').insertMany(initialUsers)
+}
 
-  async down(db, client) {
-    await db.collection('users').deleteMany({
-      _id: {
-        $in: initialUsers.map((user) => user._id),
-      },
-    })
-  },
+export const down = async (db, client) => {
+  await db.collection('users').deleteMany({
+    _id: {
+      $in: initialUsers.map((user) => user._id),
+    },
+  })
 }

@@ -10,4 +10,4 @@ function authorization(req, res, next) {
   return next(null)
 }
 
-module.exports = authorization
+export default authorization

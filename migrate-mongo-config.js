@@ -5,7 +5,7 @@ require('dotenv').config({ path: env_path })
 const db_url = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/'
 const db_name = process.env.MONGO_DB || 'test'
 
-module.exports = {
+const config = {
   mongodb: {
     url: db_url + db_name,
     options: {},
@@ -15,3 +15,5 @@ module.exports = {
   migrationFileExtension: '.js',
   useFileHash: false,
 }
+
+export default config

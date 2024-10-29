@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-const mongodb = require('mongodb')
+import mongodb from 'mongodb'
 
 const { ObjectId } = mongodb
 
@@ -18,16 +17,14 @@ const initialRoles = [
   },
 ]
 
-module.exports = {
-  async up(db, client) {
-    await db.collection('roles').insertMany(initialRoles)
-  },
+export const up = async (db) => {
+  await db.collection('roles').insertMany(initialRoles)
+}
 
-  async down(db, client) {
-    await db.collection('roles').deleteMany({
-      _id: {
-        $in: initialRoles.map((role) => role._id),
-      },
-    })
-  },
+export const down = async (db) => {
+  await db.collection('roles').deleteMany({
+    _id: {
+      $in: initialRoles.map((role) => role._id),
+    },
+  })
 }
