@@ -18,9 +18,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(authorization)
 
-// This is to aviod error
-app.get('/favicon.ico', (req, res) => res.status(204))
-
 app.use('/', statusRouter)
 app.use('/auth', authRouter)
 app.use('/users', authentication, userRouter)

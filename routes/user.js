@@ -12,6 +12,11 @@ router.post('/', createUser)
 router.put('/:id', updateUser)
 router.delete('/:id', deleteUser)
 
+function toDate(input) {
+  const [day, month, year] = input.split('/')
+  return new Date(year, month, day)
+}
+
 async function getAllUsers(req, res, next) {
   console.log('getAllUsers by user ', req.user._id)
   try {
@@ -42,30 +47,6 @@ async function getUserById(req, res, next) {
   }
 }
 
-// Por Postman
-// {
-//   "_id": "000000000000000000000000",
-//   "email": "admin@baseapinode.com",
-//   "password": "Password1",
-//   "firstName": "Admin",
-//   "lastName": "BaseApiNode",
-//   "role": "admin",
-//   "isActive": true
-// }
-// {
-//   "_id": "000000000000000000000001",
-//   "email": "client@baseapinode.com",
-//   "password": "Password1",
-//   "firstName": "Client",
-//   "lastName": "BaseApiNode",
-//   "role": "client",
-//     "governmentId": {
-//     "type": "dni",
-//     "number": "22222222"
-//   },
-//   "isActive": true
-// }
-
 async function createUser(req, res, next) {
   console.log('createUser: ', req.body)
 
@@ -79,7 +60,12 @@ async function createUser(req, res, next) {
 
     const passEncrypted = await bcrypt.hash(user.password, 10)
 
-    const userCreated = await User.create({ ...user, password: passEncrypted, role: role._id })
+    const userCreated = await User.create({
+      ...user,
+      bornDate: toDate(user.bornDate),
+      password: passEncrypted,
+      role: role._id,
+    })
 
     res.send(userCreated)
   } catch (err) {
@@ -105,7 +91,7 @@ async function updateUser(req, res, next) {
     const userToUpdate = await User.findById(req.params.id)
 
     if (!userToUpdate) {
-      req.logger.error('User not found')
+      console.error('User not found')
       return res.status(404).send('User not found')
     }
 
@@ -113,7 +99,7 @@ async function updateUser(req, res, next) {
       const newRole = await Role.findById(req.body.role)
 
       if (!newRole) {
-        req.logger.verbose('New role not found. Sending 400 to client')
+        console.info('New role not found. Sending 400 to client')
         return res.status(400).end()
       }
       req.body.role = newRole._id

@@ -13,7 +13,7 @@ const env_path = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env'
 dotenv.config({ path: env_path })
 
 // Get port from environment and store in Express.
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 app.set('port', port)
 
 // Create HTTP server.

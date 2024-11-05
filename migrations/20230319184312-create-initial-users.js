@@ -6,7 +6,7 @@ const { ObjectId } = mongodb
 const initialUsers = [
   {
     _id: new ObjectId('000000000000000000000000'),
-    email: 'admin@baseapinode.com',
+    email: 'admin@baseapi.com',
     password: '$2a$10$J3Qa3YiZTxXBX7NsSXMWmeVfrnsK7GXyCQM8sQ0VpSgvULxA/DOgO', // Password1
     firstName: 'Admin',
     lastName: 'BaseApi',
@@ -18,7 +18,7 @@ const initialUsers = [
   },
   {
     _id: new ObjectId('000000000000000000000001'),
-    email: 'glarriera@baseapinode.com',
+    email: 'glarriera@gmail.com',
     password: '$2a$10$J3Qa3YiZTxXBX7NsSXMWmeVfrnsK7GXyCQM8sQ0VpSgvULxA/DOgO', // Password1
     firstName: 'Gaston',
     lastName: 'Larriera',
@@ -36,7 +36,7 @@ const initialUsers = [
   },
   {
     _id: new ObjectId('000000000000000000000002'),
-    email: 'clopez@baseapinode.com',
+    email: 'clopez@gmail.com',
     password: '$2a$10$J3Qa3YiZTxXBX7NsSXMWmeVfrnsK7GXyCQM8sQ0VpSgvULxA/DOgO', // Password1
     firstName: 'Carlos',
     lastName: 'Lopez',
