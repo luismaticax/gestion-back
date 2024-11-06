@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/status', (req, res) => {
   console.log('Responding to status request')
-  res.status(200).send('The API is up and running')
+  res.status(200).send({ status: 'The API is up and running' })
 })
 
 export default router
