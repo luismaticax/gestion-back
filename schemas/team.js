@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 const { Schema } = mongoose
+const { ObjectId } = Schema.Types
 
 const teamSchema = new Schema({
   name: { type: String, required: true },

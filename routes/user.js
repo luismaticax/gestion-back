@@ -1,8 +1,7 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
 
-import User from '../schemas/user.js'
-import Role from '../schemas/role.js'
+import { User, Role } from '../schemas/models.js'
 
 const router = express.Router()
 
