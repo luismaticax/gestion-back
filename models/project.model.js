@@ -12,6 +12,6 @@ const projectSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 })
 
-const Project = mongoose.model('Project', projectSchema)
+const ProjectModel = mongoose.model('Project', projectSchema)
 
-export default Project
+export default ProjectModel

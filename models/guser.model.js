@@ -21,7 +21,7 @@ const guserSchema = new Schema({
 	firstName: { type: String, required: true, lowercase: true, trim: true },
 	lastName: { type: String, required: true, lowercase: true, trim: true },
 	isActive: { type: Boolean, default: true },
-	team: { type: ObjectId, ref: 'Team' }, // Reference to team
+	team: [{ type: ObjectId, ref: 'Team' }], // Reference to team
 	tasksAssigned: [{ type: ObjectId, ref: 'Task' }], // List of tasks assigned to the user
 })
 
@@ -35,6 +35,6 @@ guserSchema.method('checkPassword', async function checkPassword(potentialPasswo
 	return { isOk: isMatch, isLocked: !this.isActive }
 })
 
-const Guser = mongoose.model('GUser', guserSchema)
+const GuserModel = mongoose.model('GUser', guserSchema)
 
-export default Guser
+export default GuserModel

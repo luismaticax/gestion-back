@@ -6,6 +6,6 @@ const roleSchema = new Schema({
   name: { type: String, required: true, lowercase: true, trim: true, unique: true },
 })
 
-const Role = mongoose.model('Role', roleSchema)
+const RoleModel = mongoose.model('Role', roleSchema)
 
-export default Role
+export default RoleModel

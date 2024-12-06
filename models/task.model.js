@@ -6,14 +6,14 @@ const { ObjectId } = Schema.Types
 const taskSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String },
-  priority: { type: String, enum: ['low', 'medium0', 'high'], required: true },
-  status: { type: String, enu: ['pending', 'in progress', 'completed'], default: 'pending' },
+  priority: { type: String, enum: ['low', 'medium', 'high'], required: true },
+  status: { type: String, enum: ['pending', 'in progress', 'completed'], default: 'pending' },
   project: { type: ObjectId, ref: 'Project', required: true },
-  assignedTo: { type: ObjectId, ref: 'User' },
+  assignedTo: { type: ObjectId, ref: 'User' }, //Ref al user
   dueDate: { type: Date },
   createdAt: { type: Date, default: Date.now },
 })
 
-const Task = mongoose.model('Task', taskSchema)
+const TaskModel = mongoose.model('Task', taskSchema)
 
-export default Task
+export default TaskModel

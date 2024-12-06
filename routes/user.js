@@ -1,7 +1,7 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
 
-import { User, Role } from '../schemas/models.js'
+import { UserModel, RoleModel } from '../models/index.js'
 
 const router = express.Router()
 
@@ -19,7 +19,7 @@ function toDate(input) {
 async function getAllUsers(req, res, next) {
   console.log('getAllUsers by user ', req.user._id)
   try {
-    const users = await User.find({ isActive: true }).populate('role')
+    const users = await UserModel.find({ isActive: true }).populate('role')
     res.send(users)
   } catch (err) {
     next(err)
@@ -34,10 +34,10 @@ async function getUserById(req, res, next) {
   }
 
   try {
-    const user = await User.findById(req.params.id).populate('role')
+    const user = await UserModel.findById(req.params.id).populate('role')
 
     if (!user || user.length == 0) {
-      res.status(404).send('User not found')
+      res.status(404).send('UserModel not found')
     }
 
     res.send(user)
@@ -52,14 +52,14 @@ async function createUser(req, res, next) {
   const user = req.body
 
   try {
-    const role = await Role.findOne({ name: user.role })
+    const role = await RoleModel.findOne({ name: user.role })
     if (!role) {
-      res.status(404).send('Role not found')
+      res.status(404).send('RoleModel not found')
     }
 
     const passEncrypted = await bcrypt.hash(user.password, 10)
 
-    const userCreated = await User.create({
+    const userCreated = await UserModel.create({
       ...user,
       bornDate: toDate(user.bornDate),
       password: passEncrypted,
@@ -87,15 +87,15 @@ async function updateUser(req, res, next) {
   delete req.body.email
 
   try {
-    const userToUpdate = await User.findById(req.params.id)
+    const userToUpdate = await UserModel.findById(req.params.id)
 
     if (!userToUpdate) {
-      console.error('User not found')
-      return res.status(404).send('User not found')
+      console.error('UserModel not found')
+      return res.status(404).send('UserModel not found')
     }
 
     if (req.body.role) {
-      const newRole = await Role.findById(req.body.role)
+      const newRole = await RoleModel.findById(req.body.role)
 
       if (!newRole) {
         console.info('New role not found. Sending 400 to client')
@@ -136,13 +136,13 @@ async function deleteUser(req, res, next) {
   }
 
   try {
-    const user = await User.findById(req.params.id)
+    const user = await UserModel.findById(req.params.id)
 
     if (!user) {
-      res.status(404).send('User not found')
+      res.status(404).send('UserModel not found')
     }
 
-    await User.deleteOne({ _id: user._id })
+    await UserModel.deleteOne({ _id: user._id })
 
     res.send(`User deleted :  ${req.params.id}`)
   } catch (err) {

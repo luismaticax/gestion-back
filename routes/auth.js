@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import User from '../schemas/user.js'
+import UserModel from '../models/user.model.js'
 
 import generateUserToken from '../utils/generate-user-and-token.js'
 
@@ -21,10 +21,10 @@ async function createUserToken(req, res, next) {
   }
 
   try {
-    const user = await User.findOne({ email: req.body.email }, '+password')
+    const user = await UserModel.findOne({ email: req.body.email }, '+password')
 
     if (!user) {
-      console.error('User not found. Sending 404 to client')
+      console.error('UserModel not found. Sending 404 to client')
       return res.status(401).end()
     }
 
@@ -32,12 +32,12 @@ async function createUserToken(req, res, next) {
     const result = await user.checkPassword(req.body.password)
 
     if (result.isLocked) {
-      console.error('User is locked. Sending 400 (Locked) to client')
+      console.error('UserModel is locked. Sending 400 (Locked) to client')
       return res.status(400).end()
     }
 
     if (!result.isOk) {
-      console.error('User password is invalid. Sending 401 to client')
+      console.error('UserModel password is invalid. Sending 401 to client')
       return res.status(401).end()
     }
 

@@ -42,6 +42,6 @@ userSchema.method('checkPassword', async function checkPassword(potentialPasswor
   return { isOk: isMatch, isLocked: !this.isActive }
 })
 
-const User = mongoose.model('User', userSchema)
+const UserModel = mongoose.model('User', userSchema)
 
-export default User
+export default UserModel

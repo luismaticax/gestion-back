@@ -2,10 +2,10 @@ import jwt from 'jsonwebtoken'
 // import fs from 'fs'
 // import path from 'path'
 
-import Role from '../schemas/role.js'
+import RoleModel from '../models/role.model.js'
 
 async function generateUserToken(req, user) {
-  const role = await Role.findById(user.role).exec()
+  const role = await RoleModel.findById(user.role).exec()
 
   const payload = {
     _id: user._id,
