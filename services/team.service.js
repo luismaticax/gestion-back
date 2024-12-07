@@ -1,8 +1,8 @@
 import {TeamModel, GuserModel} from '../models/index.js'
-import teamModel from "../models/team.model.js";
 
 // Get team by ID
 export const getTeamById = async (id) => {
+	console.log('Calling getTeamById service: ', id);
 	try {
 		const team = await TeamModel.findById(id).populate('leader').populate('members');
 		if (!team) {
@@ -17,10 +17,17 @@ export const getTeamById = async (id) => {
 //Create team with leader assigned
 export const createTeam = async (teamData) => {
 	try{
+		const existingTeam = await TeamModel.findOne({name: teamData.name});
+		if (existingTeam) {
+			throw new Error('Team already exists');
+		}
+
 		const leader = await GuserModel.findById(teamData.leader);
 		if (!leader) {
 			throw new Error('Leader not found');
 		}
+
+
 
 		const newTeam = new TeamModel({
 			name: teamData.name,
@@ -35,7 +42,7 @@ export const createTeam = async (teamData) => {
 		//Checks if any user doesn't exist
 		if (teamData.members && teamData.members.length > 0) {
 			const members = await GuserModel.find({'_id': {$in: teamData.members}});
-			if (members.lenght !== teamData.members.length) {
+			if (members.length !== teamData.members.length) {
 				throw new Error('Some members do not exist')
 			}
 		}
@@ -69,13 +76,20 @@ export const removeMemberFromTeam = async (teamId, memberId, leaderId) => {
       { new: true },
     )
 
+	const updatedUser = await GuserModel.findByIdAndUpdate(
+		memberId,
+		{$pull: {team:teamId}},
+		{new: true}
+	)
+
     return updatedTeam
   }catch (error) {
 	  console.error('Error removing member from team:', error)
-	  throw new Error('Error removing member from team')
+	  throw new Error(`Error removing member from team: ${error.message}`)
   }
 }
 
+//Add a member to a team
 export const addMemberToTeam = async (teamId, memberId, leaderId) => {
 	try{
 
@@ -94,15 +108,25 @@ export const addMemberToTeam = async (teamId, memberId, leaderId) => {
 			return { message: 'Member is already in the team' }
 		}
 
-		const updatedTeam = await teamModel.findByIdAndUpdate(
+		const updatedTeam = await TeamModel.findByIdAndUpdate(
 			teamId,
 			{ $push: { members: memberId } },
 			{new:true}
 		)
 
+		if(!updatedTeam) {
+			throw new error('Failed to update team')
+		}
+
+		const updatedUser = await GuserModel.findByIdAndUpdate(
+			memberId,
+			{$push: {team:teamId}},
+			{new: true}
+		);
+
 		return updatedTeam
 	} catch (error) {
 		console.error('Error adding member from team:', error)
-		throw new Error('Error adding member to team')
+		throw new Error(`Error adding member to team: ${error.message}`)
 	}
 }
