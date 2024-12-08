@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import cors from 'cors'
 
-import {authRoutes, statusRoutes, userRoutes, roleRoutes, teamRoutes} from './routes/index.js'
+import {authRoutes, statusRoutes, userRoutes, roleRoutes, teamRoutes, projectRoutes} from './routes/index.js'
 import authentication from './middlewares/authentication.js'
 import authorization from './middlewares/authorization.js'
 
@@ -21,5 +21,6 @@ app.use('/auth', authRoutes)
 app.use('/users', authentication, userRoutes)
 app.use('/role', roleRoutes)
 app.use('/teams', teamRoutes)
+app.use('/projects', projectRoutes)
 
 export default app

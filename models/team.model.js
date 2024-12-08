@@ -5,8 +5,8 @@ const { ObjectId } = Schema.Types
 
 const teamSchema = new Schema({
   name: { type: String, required: true },
-  leader: { type: ObjectId, ref: 'User', required: true },
-  members: [{ type: ObjectId, ref: 'User' }],
+  leader: { type: ObjectId, ref: 'GUser', required: true },
+  members: [{ type: ObjectId, ref: 'GUser' }],
   createdAt: { type: Date, default: Date.now },
 })
 

@@ -1,4 +1,7 @@
-import {getTeamById, createTeam, removeMemberFromTeam, addMemberToTeam} from "../services/team.service.js";
+import {getTeamById,
+	createTeam,
+	removeMemberFromTeam,
+	addMemberToTeam} from "../services/team.service.js";
 
 export const getTeamByIdController = async (req, res) => {
 	try{
