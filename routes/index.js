@@ -4,5 +4,6 @@ import userRoutes from '../routes/user.js';
 import roleRoutes from '../routes/role.js';
 import teamRoutes from '../routes/team.js';
 import projectRoutes from '../routes/project.js';
+import taskRoutes from '../routes/task.js';
 
-export { authRoutes, statusRoutes, userRoutes, roleRoutes, teamRoutes, projectRoutes };
+export { authRoutes, statusRoutes, userRoutes, roleRoutes, teamRoutes, projectRoutes, taskRoutes };

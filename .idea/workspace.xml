@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="449877a1-1ceb-486f-9e96-de76926371b8" name="Changes" comment="finished team service/controller">
+    <list default="true" id="449877a1-1ceb-486f-9e96-de76926371b8" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;app.js&#10;#&#9;controllers/team.controller.js&#10;#&#9;routes/index.js&#10;#&#9;services/team.service.js">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/team.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/team.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/team.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/team.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/task.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/task.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/project.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/project.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/team.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/team.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/task.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/task.service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +91,8 @@
       <workItem from="1733365783180" duration="5927000" />
       <workItem from="1733441185449" duration="16698000" />
       <workItem from="1733496322729" duration="13947000" />
-      <workItem from="1733582721472" duration="7571000" />
+      <workItem from="1733582721472" duration="9414000" />
+      <workItem from="1733674525595" duration="6962000" />
     </task>
     <task id="LOCAL-00001" summary="added gusers">
       <option name="closed" value="true" />
@@ -143,7 +142,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733546948295</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="finished project service/controller">
+      <option name="closed" value="true" />
+      <created>1733639488892</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733639488892</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;app.js&#10;#&#9;controllers/team.controller.js&#10;#&#9;routes/index.js&#10;#&#9;services/team.service.js">
+      <option name="closed" value="true" />
+      <created>1733639866401</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733639866401</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;app.js&#10;#&#9;controllers/team.controller.js&#10;#&#9;routes/index.js&#10;#&#9;services/team.service.js">
+      <option name="closed" value="true" />
+      <created>1733639888740</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733639888740</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,8 +187,9 @@
     <MESSAGE value="added gusers" />
     <MESSAGE value="completed role" />
     <MESSAGE value="added some services" />
-    <MESSAGE value="finished project service/controller" />
     <MESSAGE value="finished team service/controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished team service/controller" />
+    <MESSAGE value="finished project service/controller" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;app.js&#10;#&#9;controllers/team.controller.js&#10;#&#9;routes/index.js&#10;#&#9;services/team.service.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;app.js&#10;#&#9;controllers/team.controller.js&#10;#&#9;routes/index.js&#10;#&#9;services/team.service.js" />
   </component>
 </project>

@@ -9,7 +9,7 @@ const taskSchema = new Schema({
   priority: { type: String, enum: ['low', 'medium', 'high'], required: true },
   status: { type: String, enum: ['pending', 'in progress', 'completed'], default: 'pending' },
   project: { type: ObjectId, ref: 'Project', required: true },
-  assignedTo: { type: ObjectId, ref: 'User' }, //Ref al user
+  assignedTo: { type: ObjectId, ref: 'GUser' }, //Ref al user
   dueDate: { type: Date },
   createdAt: { type: Date, default: Date.now },
 })
