@@ -20,10 +20,8 @@ const guserSchema = new Schema({
 	role: { type: ObjectId, ref: 'Role', required: true },
 	firstName: { type: String, required: true, lowercase: true, trim: true },
 	lastName: { type: String, required: true, lowercase: true, trim: true },
-	isActive: { type: Boolean, default: true },
-	team: [{ type: ObjectId, ref: 'Team' }], // Reference to team
-	tasksAssigned: [{ type: ObjectId, ref: 'Task' }], // List of tasks assigned to the user
-})
+	isActive: { type: Boolean, default: true }
+		})
 
 guserSchema.method('checkPassword', async function checkPassword(potentialPassword) {
 	if (!potentialPassword) {
