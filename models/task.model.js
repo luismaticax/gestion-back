@@ -18,7 +18,7 @@ const taskSchema = new Schema({
     default: 'pending',
   },
   completionPercentage: { type: Number, default: 0, min: 0, max: 100 },
-  weight: { type: Number, default: 0, min: 0, max: 100 },
+  weight: { type: Number, min: 0, max: 100, default: 0 },
   project: { type: ObjectId, ref: 'Project', required: true }, // Ref to project collection
   assignedTo: { type: ObjectId, ref: 'GUser' }, //Ref to GUser collection
   startDate: { type: Date },
@@ -26,7 +26,7 @@ const taskSchema = new Schema({
   isOverdue: { type: Boolean, default: false },
   createdBy: { type: ObjectId, ref: 'GUser', required: true },
   createdOn: { type: Date, default: Date.now },
-  subTasks: [{ type: ObjectId, ref: 'Task' }],
+  parentTask: { type: ObjectId, ref: 'Task', default: null },
   updatedOn: { type: Date, default: Date.now },
   lastUpdatedBy: { type: ObjectId, ref: 'GUser' },
 })

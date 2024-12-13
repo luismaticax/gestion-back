@@ -1,4 +1,5 @@
-import { ProjectModel, TeamModel } from '../models/index.js'
+import { ProjectModel, TaskModel, TeamModel } from '../models/index.js'
+import { calculateProjectCompletion } from '../utils/projectUtils.js'
 
 //Get project by ID
 export const getProjectbyId = async (id) => {
@@ -39,12 +40,10 @@ export const getAllProjectsByTeamId = async (teamId) => {
 export const deleteProjectById = async (id) => {
   console.log('Calling deleteProjectById: ', id)
   try {
-    const project = await ProjectModel.findById(id)
+    const project = await ProjectModel.findByIdAndDelete(id)
     if (!project) {
       throw new Error(`Project with id ${id} not found`)
     }
-
-    await ProjectModel.findByIdAndDelete(id)
 
     console.log('Project with id ${id} deleted successfully')
     return { message: 'Project with id ${id} deleted successfully' }
@@ -58,9 +57,9 @@ export const deleteProjectById = async (id) => {
 export const createProject = async (projectData) => {
   console.log('Calling createProject: ', projectData)
   try {
-    const teamExists = TeamModel.findById(projectData.team)
+    const teamExists = await TeamModel.findById(projectData.team)
     if (!teamExists) {
-      throw new Error('Team with id ${projectData.team} not found')
+      throw new Error(`Team with id ${projectData.team} not found`)
     }
 
     const newProject = new ProjectModel({
@@ -73,10 +72,32 @@ export const createProject = async (projectData) => {
 
     await newProject.save()
 
-    console.log(`Project: id $\{newProject._id} and name $\{newProject.name} created successfully`)
+    console.log(`Project: id ${newProject._id} and name ${newProject.name} created successfully`)
     return newProject
   } catch (error) {
     console.error(`Error creating project: ${error.message}`)
-    throw new error(`Error creating project: ${error.message}`)
+    throw new Error(`Error creating project: ${error.message}`)
+  }
+}
+
+export const updateProjectCompletion = async (projectId) => {
+  console.log('Calling updateProjectCompletion service: ', projectId)
+  try {
+    const tasks = await TaskModel.find({ project: projectId })
+
+    const projectCompletion = calculateProjectCompletion(tasks)
+
+    const project = await ProjectModel.findById(projectId)
+    if (!project) {
+      throw new Error(`Project with id ${projectId} not found`)
+    }
+
+    project.completionPercentage = projectCompletion
+    await project.save()
+
+    return project
+  } catch (error) {
+    console.error(`Error updating project: ${error.message}`)
+    throw new Error(`Error updating project: ${error.message}`)
   }
 }

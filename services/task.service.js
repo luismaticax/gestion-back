@@ -1,90 +1,92 @@
-import {TaskModel, GuserModel, ProjectModel} from '../models/index.js'
-
-export const getTaskById = async (id) => {
-	console.log('Calling getTaskById:', id)
-	try{
-		const task = await TaskModel.findById(id)
-			.populate('project', "name")
-			.populate('assignedTo', 'firstname lastname email')
-
-		if (!task) {
-			throw new Error(`Task with id ${id} not found`);
-		}
-
-		return task;
-	}   catch(error){
-		console.error(`Error retrieving task by ID: ${error.message}`);
-		throw new Error(`Error retrieving task by ID: ${error.message}`);
-	}
-}
-
-export const deleteTaskById = async (id) => {
-	console.log('Calling deleteTaskById: ', id)
-	try{
-		const task = await TaskModel.findById(id)
-
-		if (!task) {
-			throw new Error(`Task with id ${id} not found`);
-		}
-
-		await TaskModel.findByIdAndDelete(id)
-
-		if (task.assignedTo){
-
-			await GuserModel.findByIdAndUpdate(
-				task.assignedTo,
-				{$pull: {tasksAssigned: id}},
-				{new: true}
-			)
-		}
-	} catch (error) {
-		console.error(`Error removing task by ID: ${error.message}`);
-		throw new Error(`Error removing task by ID: ${error.message}`);
-	}
-}
+import { TaskModel, GuserModel, ProjectModel } from '../models/index.js'
+import { calculateTaskCompletion } from '../utils/projectUtils.js'
+import { ObjectId } from 'mongodb'
 
 export const createTask = async (taskData) => {
+  console.log('Calling createTask service: ', taskData)
 
-	try{
+  const {
+    title,
+    priority,
+    project,
+    assignedTo,
+    createdBy,
+    startDate,
+    dueDate,
+    parentTask,
+    weight,
+    completionPercentage,
+  } = taskData
 
-		if (taskData.assignedTo){
-			const guser = await GuserModel.findById(taskData.assignedTo)
-			if (!guser) {
-				throw new Error(`User with ID ${taskData.assignedTo} not found`);
-			}
-		}
+  try {
+    //Validate if required fields are in the req
+    if (!title || !priority || !project || !createdBy) {
+      throw new Error('Missing required fields')
+    }
 
-		if (taskData.project){
-			const project = await ProjectModel.findById(taskData.project)
-			if (!project) {
-				throw new Error(`User with ID ${taskData.project} not found`);
-			}
-		}
+    const projectExists = await ProjectModel.findById(project)
+    if (!projectExists) {
+      throw new Error(`Project with id ${project} not found`)
+    }
 
-		const newTask = new TaskModel({
-			title: taskData.title,
-			description: taskData.description,
-			priority: taskData.priority,
-			status: taskData.status || 'pending',
-			project: taskData.project,
-			assignedTo: taskData.assignedTo || null,
-			dueDate: taskData.dueDate || null,
-		});
+    const userExists = await GuserModel.findById(assignedTo)
+    if (!userExists) {
+      throw new Error(`User with id ${assignedTo} not found for assignedTo`)
+    }
 
-		const savedTask = await newTask.save()
+    if (parentTask) {
+      const parentTaskExists = await TaskModel.findById(parentTask)
+      if (!parentTaskExists) {
+        throw new Error(`Task with id ${parentTask} not found`)
+      }
 
-		if (taskData.assignedTo) {
-			await GuserModel.findByIdAndUpdate(
-				taskData.assignedTo,
-				{$push: {tasksAssigned: savedTask._id}},
-				{new: true}
-			)
-		}
+      const projectid = new ObjectId(project)
 
-		return savedTask
-	}catch (error) {
-		console.error(`Error creating task: ${error.message}`);
-		throw new Error(`Error creating task: ${error.message}`);
-	}
+      console.log(parentTaskExists.project, projectid)
+      if (!parentTaskExists.project.equals(projectid)) {
+        throw new Error(`Task with id ${parentTask} does not belong to the project`)
+      }
+    }
 
+    const newTask = new TaskModel({
+      title,
+      description: taskData.description || '',
+      priority,
+      project,
+      assignedTo: assignedTo || null,
+      startDate: startDate || null,
+      dueDate: dueDate || null,
+      createdBy,
+      parentTask: parentTask || null,
+      weight: weight || 0,
+      completionPercentage: completionPercentage || 0,
+    })
+    await newTask.save()
+    console.log(`Task: id ${newTask._id} and title ${newTask.title} created successfully`)
+    return newTask
+  } catch (error) {
+    console.error(`Error creating task: ${error.message}`)
+    throw new Error(`Error creating task: ${error.message}`)
+  }
+}
+
+export const updateMainTaskCompletion = async (mainTaskId) => {
+  console.log('Calling updateMainTaskCompletion service: ', mainTaskId)
+  try {
+    const mainTask = await TaskModel.findById(mainTaskId)
+    if (!mainTask) {
+      throw new Error(`Task with id ${mainTaskId} not found`)
+    }
+
+    const subtasks = await TaskModel.find({ parentTask: mainTaskId })
+
+    mainTask.completionPercentage = calculateTaskCompletion(mainTask, subtasks)
+
+    await mainTask.save()
+
+    return mainTask
+  } catch (error) {
+    console.error(`Error updating task: ${error.message}`)
+    throw new Error(`Error updating task: ${error.message}`)
+  }
 }
