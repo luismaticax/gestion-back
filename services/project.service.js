@@ -1,5 +1,6 @@
 import { ProjectModel, TaskModel, TeamModel } from '../models/index.js'
 import { calculateProjectCompletion } from '../utils/projectUtils.js'
+import { updateMainTaskCompletion } from './task.service.js'
 
 //Get project by ID
 export const getProjectbyId = async (id) => {
@@ -85,7 +86,19 @@ export const updateProjectCompletion = async (projectId) => {
   try {
     const tasks = await TaskModel.find({ project: projectId })
 
-    const projectCompletion = calculateProjectCompletion(tasks)
+    if (!tasks || tasks.length === 0) {
+      throw new Error(`No tasks found for project with id ${projectId}`)
+    }
+
+    const mainTasks = tasks.filter((task) => !task.parentTask)
+
+    for (const mainTask of mainTasks) {
+      await updateMainTaskCompletion(mainTask._id) // Asegura que estén actualizadas
+    }
+
+    const updatedTasks = await TaskModel.find({ project: projectId })
+
+    const projectCompletion = calculateProjectCompletion(updatedTasks)
 
     const project = await ProjectModel.findById(projectId)
     if (!project) {
