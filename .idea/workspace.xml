@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="449877a1-1ceb-486f-9e96-de76926371b8" name="Changes" comment="added utils, fixed some errors">
+      <change beforePath="$PROJECT_DIR$/.idea/gestion-back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gestion-back.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/project.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/project.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/project.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/project.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/project.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gestion-front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../gestion-front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gestion-front/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../gestion-front/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gestion-front/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../gestion-front/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gestion-front/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../gestion-front/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gestion-front/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../gestion-front/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +35,7 @@
     <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../gestion-front" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -46,30 +57,43 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2pd07ozbjKybuxxNolDZI1KXUs0" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/usuario/Desktop/Projects/gestion-back&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\usuario\\Desktop\\Projects\\gestion-back\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/usuario/Desktop/Projects/gestion-front/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\usuario\\Desktop\\Projects\\gestion-back\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "ts.external.directory.path": "C:\\Users\\usuario\\Desktop\\Projects\\gestion-front\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\usuario\Desktop\Projects\gestion-front\src" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -104,7 +128,8 @@
       <workItem from="1734023059177" duration="25009000" />
       <workItem from="1734103393684" duration="8032000" />
       <workItem from="1734121749201" duration="12496000" />
-      <workItem from="1734186446349" duration="305000" />
+      <workItem from="1734186446349" duration="29619000" />
+      <workItem from="1734279155655" duration="38043000" />
     </task>
     <task id="LOCAL-00001" summary="added gusers">
       <option name="closed" value="true" />
@@ -218,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734156783215</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added utils, fixed some errors">
+      <option name="closed" value="true" />
+      <created>1734186777968</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1734186777968</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

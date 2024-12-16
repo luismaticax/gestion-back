@@ -16,6 +16,10 @@ import {
 import authentication from './middlewares/authentication.js'
 import authorization from './middlewares/authorization.js'
 
+const corsOptions = {
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+}
+
 const app = express()
 
 app.use(logger('dev'))

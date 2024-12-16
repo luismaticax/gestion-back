@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/gestion-back.iml" filepath="$PROJECT_DIR$/.idea/gestion-back.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gestion-front/.idea/gestion-front.iml" filepath="$PROJECT_DIR$/../gestion-front/.idea/gestion-front.iml" />
     </modules>
   </component>
 </project>

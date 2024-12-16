@@ -4,6 +4,8 @@ import {
   deleteProjectById,
   createProject,
   updateProjectCompletion,
+  getAllProjects,
+  getDashboardData,
 } from '../services/project.service.js'
 
 export const getProjectByIdController = async (req, res) => {
@@ -15,7 +17,7 @@ export const getProjectByIdController = async (req, res) => {
   }
 }
 
-export const getAllProjectsController = async (req, res) => {
+export const getAllProjectsByTeamIdController = async (req, res) => {
   try {
     const projects = await getAllProjectsByTeamId(req.params.id)
     res.status(200).send(projects)
@@ -59,5 +61,24 @@ export const updateProjectCompletionController = async (req, res) => {
     })
   } catch (error) {
     return res.status(400).json({ message: error.message })
+  }
+}
+
+export const getAllProjectsController = async (req, res) => {
+  try {
+    const projects = await getAllProjects()
+    res.status(200).json(projects)
+  } catch (error) {
+    res.status(500).json({ mesage: error.message })
+  }
+}
+
+export const getDashboardController = async (req, res) => {
+  console.log(req.params.id)
+  try {
+    const dashboardData = await getDashboardData(req.params.id)
+    res.status(200).json(dashboardData)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
   }
 }
